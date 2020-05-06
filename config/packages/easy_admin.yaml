@@ -1,0 +1,87 @@
+easy_admin:
+  user:
+    name_property_path: 'email'
+  list:
+    actions: ['show', 'edit', 'search', 'delete']
+
+  design:
+    assets:
+      css:
+        - 'admin.css'
+    menu:
+      - label: 'Recursos Humanos'
+        icon: 'users'
+        children:
+          - { entity: 'Departments', label: 'Departamentos' }
+          - { entity: 'Functionaries', label: 'Funcionários' }
+          - { entity: 'ConfigHours' , label: 'Configuração de Horários' }
+      - label: 'Compras'
+        icon: 'qrcode'
+        children:
+          - { entity: 'Suppliers', label: 'Fornecedores' }
+          - { entity: 'ComprasProduct', label: 'Produtos' }
+      - label: 'Definições'
+        icon: 'toolbox'
+        children:
+          - { entity: 'User', label: 'Utilizadores' }
+
+
+  entities:
+    Departments:
+      class: App\Entity\Departments
+      list:
+        fields:
+          - name
+          - { property: 'email', type: 'email' }
+          - { property: 'phone', type: 'tel' }
+          - where_it_is
+      form:
+        fields:
+          - name
+          - { property: 'where_it_is', label: 'Localização' }
+          - { type: 'section', label: 'Informações de Contacto', icon: 'phone' }
+          - email
+          - phone
+    Functionaries:
+      class: App\Entity\Functionaries
+      list:
+        actions: ['show']
+    ConfigHours:
+      class: App\Entity\ConfigHours
+    User:
+      class: App\Entity\User
+      list:
+        fields:
+          - { property: 'email' }
+    Suppliers:
+      class: App\Entity\Suppliers
+      list:
+        fields:
+          - { property: 'name', label: 'Nome' }
+          - { property: 'address', label: 'Morada' }
+          - { property: 'code_postal', label: 'Código Postal' }
+          - { property: 'city', label: 'Cidade' }
+          - { property: 'email', type: 'email', label: 'E-Mail' }
+          - { property: 'fax', type: 'fax', label: 'Fax' }
+          - { property: 'phone', type: 'tel', label: 'Telmóvel/Telefone' }
+    ComprasProduct:
+      class: App\Entity\ComprasProduct
+      new:
+        fields:
+          - { property: 'name', label: 'Nome do Produto' }
+          - { property: 'price', label: 'Preço' }
+          - { property: 'qte', label: 'Quantidate' }
+          - { property: 'supplier', label: 'Fornecedor' }
+      edit:
+        fields:
+          - { property: 'name', label: 'Nome do Produto' }
+          - { property: 'price', label: 'Preço' }
+          - { property: 'qte', label: 'Quantidate' }
+          - { property: 'supplier', label: 'Fornecedor' }
+      list:
+        fields:
+          - { property: 'name', label: 'Nome do Produto' }
+          - { property: 'price', label: 'Preço' }
+          - { property: 'qte', label: 'Quantidate' }
+          - { property: 'supplier.name', label: 'Fornecedor' }
+

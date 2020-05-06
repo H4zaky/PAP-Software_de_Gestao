@@ -1,0 +1,251 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+        }
+
+
+        /* [ login ]*/
+
+        .limiter {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .container-login100 {
+            width: 100%;
+            min-height: 100vh;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container-login100::before {
+            content: "";
+            display: block;
+            position: absolute;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.65);
+        }
+
+        .wrap-login100 {
+            width: 390px;
+            border-radius: 10px;
+            overflow: hidden;
+
+            background: transparent;
+        }
+
+
+        /* [ Form ]*/
+
+        .login100-form {
+            width: 100%;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .login100-form-logo {
+            font-size: 60px;
+            color: #333333;
+
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin: 0 auto;
+        }
+
+        /* [ Input ]*/
+
+        .wrap-input100 {
+            width: 100%;
+            position: relative;
+            border-bottom: 1px solid #e6e6e6;
+            padding: 29px 0;
+        }
+
+        .input100 {
+            font-size: 20px;
+            color: #555555;
+            line-height: 1.2;
+
+            display: block;
+            width: 100%;
+            height: 50px;
+            background: transparent;
+            padding: 0 10px 0 80px;
+        }
+
+        /*---------------------------------------------*/
+
+
+        /* [ Button ]*/
+        .container-login100-form-btn {
+            width: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .login100-form-btn {
+            font-size: 18px;
+            color: #fff;
+            line-height: 1.2;
+            text-transform: uppercase;
+
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            min-width: 160px;
+            height: 42px;
+            border-radius: 21px;
+
+            background: #d41872;
+            background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+            background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
+            background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
+            background: linear-gradient(left, #a445b2, #d41872, #fa4299);
+            position: relative;
+            z-index: 1;
+
+            -webkit-transition: all 0.4s;
+            -o-transition: all 0.4s;
+            -moz-transition: all 0.4s;
+            transition: all 0.4s;
+        }
+
+        .login100-form-btn::before {
+            content: "";
+            display: block;
+            position: absolute;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            border-radius: 21px;
+            background-color: #555555;
+            top: 0;
+            left: 0;
+            opacity: 0;
+
+            -webkit-transition: all 0.4s;
+            -o-transition: all 0.4s;
+            -moz-transition: all 0.4s;
+            transition: all 0.4s;
+        }
+
+        .login100-form-btn:hover {
+            background-color: transparent;
+        }
+
+        .login100-form-btn:hover:before {
+            opacity: 1;
+        }
+
+        .p-b-33 {
+            padding-bottom: 33px;
+        }
+
+        .p-t-5 {
+            padding-top: 5px;
+        }
+
+        input {
+            outline: none;
+            border: none;
+        }
+
+        button {
+            outline: none !important;
+            border: none;
+            background: 0 0;
+        }
+
+        .m-t-32 {
+            margin-top: 32px;
+        }
+
+        .info {
+            margin: 30px 0 30px 0;
+            text-align: center;
+        }
+    </style>
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+            <div class="wrap-login100 p-t-30 p-b-50">
+                <form class="login100-form validate-form p-b-33 p-t-5" method="post">
+                    {% if app.user %}
+                        <div class="mb-3 info">
+                            You are logged in as {{ app.user.username }},<br>
+                            <a href="{{ path('app_logout') }}">Logout</a> ou <a href="/">Voltar para o dashboard</a>
+                        </div>
+                    {% else %}
+                        <div class="wrap-input100 validate-input" data-validate="Enter your e-mail">
+                            <input class="input100" type="text" name="email" value="{{ last_username }}"
+                                   placeholder="E-Mail">
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter password">
+                            <input class="input100" type="password" name="password" placeholder="Password">
+                        </div>
+
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+
+                        <div class="container-login100-form-btn m-t-32">
+                            <button class="login100-form-btn">
+                                Login
+                            </button>
+                        </div>
+
+                        {% if error %}
+                            <div class="info alert alert-danger">
+                                {{ error.messageKey|trans(error.messageData, 'security') }}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

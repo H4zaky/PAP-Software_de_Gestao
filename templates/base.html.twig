@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <style>
+            body {
+                background-image: url('images/bg-01.jpg');
+                background-size: cover;
+            }</style>{% endblock %}
+</head>
+<body>
+
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>
