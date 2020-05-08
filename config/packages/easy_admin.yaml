@@ -1,4 +1,6 @@
 easy_admin:
+  site_name: 'CManager'
+
   user:
     name_property_path: 'email'
   list:
@@ -11,20 +13,22 @@ easy_admin:
     menu:
       - label: 'Recursos Humanos'
         icon: 'users'
+        permission: ['ROLE_ADMIN']
         children:
           - { entity: 'Departments', label: 'Departamentos' }
-          - { entity: 'Functionaries', label: 'Funcionários' }
           - { entity: 'ConfigHours' , label: 'Configuração de Horários' }
       - label: 'Compras'
         icon: 'qrcode'
+        permission: ['ROLE_ADMIN', 'ROLE_USER']
         children:
           - { entity: 'Suppliers', label: 'Fornecedores' }
           - { entity: 'ComprasProduct', label: 'Produtos' }
-      - label: 'Definições'
-        icon: 'toolbox'
+      - label: 'Utilizadores'
+        icon: 'users-cog'
+        permission: ['ROLE_ADMIN']
         children:
-          - { entity: 'User', label: 'Utilizadores' }
-
+          - { label: 'Consultar Funcionarios',  entity: 'Funcionarios' }
+          - { label: 'Criar Funcionarios', route: 'add_users', params: { entity: 'Funcionarios' } }
 
   entities:
     Departments:
@@ -42,17 +46,24 @@ easy_admin:
           - { type: 'section', label: 'Informações de Contacto', icon: 'phone' }
           - email
           - phone
-    Functionaries:
-      class: App\Entity\Functionaries
+    Funcionarios:
+      controller: App\Controller\FuncionariosController
+      class: App\Entity\Funcionarios
       list:
         actions: ['show']
+        fields:
+          - email
+          - roles
+      show:
+        fields:
+          - email
+          - roles
+      form:
+        fields:
+          - email
+
     ConfigHours:
       class: App\Entity\ConfigHours
-    User:
-      class: App\Entity\User
-      list:
-        fields:
-          - { property: 'email' }
     Suppliers:
       class: App\Entity\Suppliers
       list:

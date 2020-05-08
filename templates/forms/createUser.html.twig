@@ -1,0 +1,19 @@
+{% extends '@EasyAdmin/default/new.html.twig' %}
+
+{% form_theme form '@EasyAdmin/form/bootstrap_4.html.twig' %}
+
+{% block main %}
+    {% block entity_form %}
+        {{ form_start(form) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.password) }}
+        <section class="content-footer">
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary action-save">
+                    <span class="btn-label">Salvar mudanças</span>
+                </button>
+            </div>
+        </section>
+        {{ form_end(form) }}
+    {% endblock entity_form %}
+{% endblock %}
