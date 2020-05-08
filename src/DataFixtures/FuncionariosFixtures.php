@@ -19,7 +19,7 @@ class FuncionariosFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $user = new Funcionarios();
-        $user->setEmail('carlosteixeira427@gmail.com');
+        $user->setEmail('admin@gmail.com');
 
         $password = $this->encoder->encodePassword($user, 'Carlos123');
         $user->setPassword($password);

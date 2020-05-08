@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,11 +36,6 @@ class Departments
      * @ORM\Column(type="string", length=255)
      */
     private $where_it_is;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Functionaries", mappedBy="department")
-     */
-    private $functionaries;
 
     public function __construct()
     {
@@ -97,37 +91,6 @@ class Departments
     public function setWhereItIs(string $where_it_is): self
     {
         $this->where_it_is = $where_it_is;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Functionaries[]
-     */
-    public function getFunctionaries(): Collection
-    {
-        return $this->functionaries;
-    }
-
-    public function addFunctionary(Functionaries $functionary): self
-    {
-        if (!$this->functionaries->contains($functionary)) {
-            $this->functionaries[] = $functionary;
-            $functionary->setDepartment($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFunctionary(Functionaries $functionary): self
-    {
-        if ($this->functionaries->contains($functionary)) {
-            $this->functionaries->removeElement($functionary);
-            // set the owning side to null (unless already changed)
-            if ($functionary->getDepartment() === $this) {
-                $functionary->setDepartment(null);
-            }
-        }
 
         return $this;
     }

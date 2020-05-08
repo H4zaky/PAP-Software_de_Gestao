@@ -44,18 +44,12 @@ class ConfigHours
     private $tolerance;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Functionaries", mappedBy="schedule")
-     */
-    private $functionaries;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
     public function __construct()
     {
-        $this->functionaries = new ArrayCollection();
     }
 
     public function __toString()
@@ -124,37 +118,6 @@ class ConfigHours
     public function setTolerance(\DateTimeInterface $tolerance): self
     {
         $this->tolerance = $tolerance;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Functionaries[]
-     */
-    public function getFunctionaries(): Collection
-    {
-        return $this->functionaries;
-    }
-
-    public function addFunctionary(Functionaries $functionary): self
-    {
-        if (!$this->functionaries->contains($functionary)) {
-            $this->functionaries[] = $functionary;
-            $functionary->setSchedule($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFunctionary(Functionaries $functionary): self
-    {
-        if ($this->functionaries->contains($functionary)) {
-            $this->functionaries->removeElement($functionary);
-            // set the owning side to null (unless already changed)
-            if ($functionary->getSchedule() === $this) {
-                $functionary->setSchedule(null);
-            }
-        }
 
         return $this;
     }
