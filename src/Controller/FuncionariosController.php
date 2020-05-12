@@ -27,7 +27,11 @@ class FuncionariosController extends EasyAdminController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setRoles(['ROLE_USER']);
+            $permissions = ['ROLE_USER'];
+            if ($form->get('isAdmin')->getData() == true) {
+               $permissions[] = 'ROLE_ADMIN';
+            }
+            $user->setRoles($permissions);
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,

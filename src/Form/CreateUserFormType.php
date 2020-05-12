@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Funcionarios;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -27,6 +28,7 @@ class CreateUserFormType extends AbstractType
                 'second_options' => ['label' => 'Confirmar Paswword'],
                 'invalid_message' => 'mismatch',
             ])
+            ->add('isAdmin', CheckboxType::class)
         ;
     }
 

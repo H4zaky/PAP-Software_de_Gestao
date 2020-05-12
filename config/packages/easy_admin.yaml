@@ -49,6 +49,7 @@ easy_admin:
     Funcionarios:
       controller: App\Controller\FuncionariosController
       class: App\Entity\Funcionarios
+      disabled_actions: ['new']
       list:
         actions: ['show']
         fields:
