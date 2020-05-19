@@ -28,7 +28,9 @@ class CreateUserFormType extends AbstractType
                 'second_options' => ['label' => 'Confirmar Paswword'],
                 'invalid_message' => 'mismatch',
             ])
-            ->add('isAdmin', CheckboxType::class)
+            ->add('isAdmin', CheckboxType::class, [
+                'required' => false
+            ])
         ;
     }
 
