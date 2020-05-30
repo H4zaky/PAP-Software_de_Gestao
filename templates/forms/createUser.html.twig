@@ -5,6 +5,12 @@
 {% block main %}
     {% block entity_form %}
         {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.address) }}
+        {{ form_row(form.code_postal) }}
+        {{ form_row(form.city) }}
+        {{ form_row(form.phone) }}
+        {{ form_row(form.fax) }}
         {{ form_row(form.email) }}
         {{ form_row(form.password) }}
         {{ form_row(form.isAdmin) }}

@@ -23,6 +23,12 @@ class FuncionariosFixtures extends Fixture
 
         $password = $this->encoder->encodePassword($user, 'Carlos123');
         $user->setPassword($password);
+        $user->setName('Ex');
+        $user->setAddress('Ex');
+        $user->setCity('Ex');
+        $user->setCodePostal('Ex');
+        $user->setFax('Ex');
+        $user->setPhone('Ex');
         $user->setIsAdmin(true);
 
         $manager->persist($user);

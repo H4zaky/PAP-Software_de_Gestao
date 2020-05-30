@@ -63,9 +63,9 @@ class Suppliers
         $this->products = new ArrayCollection();
     }
 
-    public function __toString(): string
+    public function __toString()
     {
-        return $this->getName();
+        return $this->name;
     }
 
     public function getId(): ?int

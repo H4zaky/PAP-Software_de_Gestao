@@ -53,15 +53,28 @@ easy_admin:
       list:
         actions: ['show']
         fields:
+          - name
           - email
           - roles
       show:
         fields:
+          - name
           - email
+          - address
+          - code_postal
+          - city
+          - phone
+          - fax
           - roles
       form:
         fields:
+          - name
           - email
+          - address
+          - code_postal
+          - city
+          - phone
+          - fax
 
     ConfigHours:
       class: App\Entity\ConfigHours
@@ -74,7 +87,6 @@ easy_admin:
           - { property: 'code_postal', label: 'Código Postal' }
           - { property: 'city', label: 'Cidade' }
           - { property: 'email', type: 'email', label: 'E-Mail' }
-          - { property: 'fax', type: 'fax', label: 'Fax' }
           - { property: 'phone', type: 'tel', label: 'Telmóvel/Telefone' }
     ComprasProduct:
       class: App\Entity\ComprasProduct
@@ -95,5 +107,4 @@ easy_admin:
           - { property: 'name', label: 'Nome do Produto' }
           - { property: 'price', label: 'Preço' }
           - { property: 'qte', label: 'Quantidate' }
-          - { property: 'supplier.name', label: 'Fornecedor' }
-
+          - { property: 'supplier', label: 'Fornecedor' }
