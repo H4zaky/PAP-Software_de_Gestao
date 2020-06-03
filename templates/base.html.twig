@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+          type="image/png"
+          href="/images/favicon.png">
     {% block stylesheets %}
         <style>
             body {
                 background-image: url('images/bg-01.jpg');
                 background-size: cover;
-            }</style>{% endblock %}
+            }
+        </style>
+    {% endblock %}
 </head>
 <body>
 
